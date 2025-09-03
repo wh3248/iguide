@@ -64,70 +64,51 @@ def scrap_entry(line: str, entry_index: int, fout):
             year = "2021"
         elif doi_url.strip() == "https://www.sciencedirect.com/science/article/abs/pii/S0309170813001322":
             year = "2013"
+    author = author.replace(" and ", "")
+    author = author.replace(",,", "")
     if entry_index < 500:
-        write_csv_row(author, year, title, doi_url, entry_index, fout)
+        contents = read_url_content(doi_url)
+        contents = read_url_redirect(contents)
+        write_csv_row(author, year, title, doi_url, contents, entry_index, fout)
 
 
-def write_csv_row(author, year, title, doi_url, entry_index, fout):
+def write_csv_row(author, year, title, doi_url, contents, entry_index, fout):
     """
     Write a csv row for the publication information.
     Parameters:
         author:     The author(s) of the publication.
         year:       The year of the publication.
         title:      The title of the publication.
+        doi_url:    The URL of the document.
+        contents:   The contents of the URL of the document.
         entry_index:The index of the publication from the original source
         fout:       The file pointer to use to write the .csv file
     """
 
-    image_url = find_doi_image(doi_url)
-    if image_url:
+    if contents:
+        image_url = find_doi_image(contents)
         fout.write(f'{doi_url},{image_url},"{title}","{author}",{year}\n')
     else:
         print(f"*** Skipped DOI({entry_index}):", doi_url)
 
 
-def find_doi_image(doi_url, following_redirect=False):
+def find_doi_image(contents:str):
     """
     Find an image by reading the contents of the paper.
     Parameters:
         doi_url:        The URL to the contents of the publication.
-        following_redirect: True if this is a indirect request after following redirects.
     Returns:
         A URL of an image from the document or else a default image URL.
     """
-    try:
-        response = requests.get(doi_url)
-    except Exception:
-        if following_redirect:
-            image_url = "https://parflow.org/img/pf3d.png"
-            return image_url
-        print(f"**** Document does not exist for '{doi_url}' so skipping it.")
-        return None
-    if response.status_code not in (200, 403):
-        if following_redirect:
-            image_url = "https://parflow.org/img/pf3d.png"
-            return image_url
-        print(
-            f"**** Document returns an error ({response.status_code}) for '{doi_url}' so skipping it."
-        )
-        return None
     found_abstract = False
-    content = response.content.decode("utf-8").replace("\\n", "\n")
     image_url = ""
-    for line in content.split("\n"):
+    for line in contents.split("\n"):
         if "Abstract" in line:
             found_abstract = True
         if line.find("<img") >= 0 and not "logo" in line and not "license" in line:
             image_url = find_tag_attribute(line, "src")
             if found_abstract and image_url:
                 break
-        if (
-            not following_redirect
-            and line.find('<input type="hidden" name="redirectURL') >= 0
-        ):
-            encoded_url = find_tag_attribute(line, "value")
-            redirect_url = urllib.parse.unquote(encoded_url)
-            image_url = find_doi_image(redirect_url, True)
     if not image_url:
         image_url = "https://parflow.org/img/pf3d.png"
     elif not image_url.startswith("http"):
@@ -152,6 +133,40 @@ def find_tag_attribute(line, attribute):
         if src_end >= 0:
             result = line[0:src_end]
     return result
+
+def read_url_content(url:str):
+    """
+        Read the contents of a URL
+        Returns:
+            the contents as a string or None if unable to get the contents
+    """
+    result = None
+    try:
+        response = requests.get(url)
+        if response.status_code not in (200, 403):
+            print(
+                f"**** Document returns an error ({response.status_code}) for '{url}'."
+            )
+        else:
+            result = response.content.decode("utf-8")
+    except Exception:
+        print(f"**** Document does not exist for '{url}'")
+    return result
+
+def read_url_redirect(contents:str):
+    """Return the contents unless the contents is a redirect and then read and return the redirect contents."""
+
+    if contents:
+        redirect_tag = '<input type="hidden" name="redirectURL'
+        redirect_start = contents.find(redirect_tag)
+        if redirect_start >= 0:
+            redirect_contents = contents[redirect_start + len(redirect_tag):]
+            encoded_url = find_tag_attribute(redirect_contents, "value")
+            redirect_url = urllib.parse.unquote(encoded_url)
+            if redirect_url:
+                contents = read_url_content(redirect_url)
+    return contents
+
 
 
 if __name__ == "__main__":
