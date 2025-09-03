@@ -60,6 +60,10 @@ def scrap_entry(line: str, entry_index: int, fout):
     else:
         author = author_year
         year = ""
+        if doi_url.strip() == "https://doi.org/10.1007/s10596-021-10051-4":
+            year = "2021"
+        elif doi_url.strip() == "https://www.sciencedirect.com/science/article/abs/pii/S0309170813001322":
+            year = "2013"
     if entry_index < 500:
         write_csv_row(author, year, title, doi_url, entry_index, fout)
 
@@ -77,7 +81,7 @@ def write_csv_row(author, year, title, doi_url, entry_index, fout):
 
     image_url = find_doi_image(doi_url)
     if image_url:
-        fout.write(f'{doi_url},{image_url},"{title}","{author},{year}"\n')
+        fout.write(f'{doi_url},{image_url},"{title}","{author}",{year}\n')
     else:
         print(f"*** Skipped DOI({entry_index}):", doi_url)
 
