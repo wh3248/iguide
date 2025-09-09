@@ -1,0 +1,27 @@
+Code Links in iGuide
+
+Enter code links using:
+    https://platform.i-guide.io/code
+Required attributes:
+    visibility (public)
+    title
+    authors (comma seperated)
+    tags
+    about (paragraph of text)
+    thumbnail image
+    GIT repo url
+    Related Elements (Other code links in iGuide)
+
+Parflow:
+    https://github.com/parflow/parflow
+    https://parflow.readthedocs.io
+Subsettools:
+     https://github.com/hydroframe/subsettools
+     https://hydroframesubsettools.readthedocs.io
+PFTools:
+     https://pypi.org/project/pftools/
+Parflow Short Courses:
+    https://github.com/hydroframe/parflow_python_shortcourse
+    https://github.com/hydroframe/parflow_short_course_updated
+    https://github.com/hydroframe/ParFlow_Advanced_ShortCourse
+    https://github.com/hydroframe/ParFlow_Short_Course

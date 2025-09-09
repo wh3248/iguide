@@ -1,0 +1,15 @@
+Publication Links in iGuide
+
+Enter code links using:
+    https://platform.i-guide.io/publications
+    
+Required attributes:
+    visibility (public)
+    publication_url
+    title
+    authors (comma seperated)
+    tags (?)
+    abstract (paragraph)
+    thumbnail image
+    related_elements (links to code elements)
+    

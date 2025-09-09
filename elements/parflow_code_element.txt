@@ -1,0 +1,22 @@
+Enter into iGuide using:
+    https://platform.i-guide.io/code
+
+Title:
+    Parflow
+Authors:
+    Reed M. Maxwell, Stefan J. Kollet, Laura E. Condon, Steven G. Smith, Carol S. Woodward, Robert D. Falgout, Ian M. Ferguson, Nicholas Engdahl, Jaro Hokkanen, George Artavanis, Benjamin West, Chen Yang, Basile Hector, James Gilbert, Lindsay Bearup, Jennifer Jefferson, Chuck Baldwin, William J. Bosl, Richard Hornung, Steven Ashby, Ketan B. Kulkarni
+
+GIT URL:
+    https://github.com/parflow/parflow
+About:
+    ParFlow is an open-source, modular, parallel watershed flow model. It includes fully-integrated overland flow, the ability to simulate complex topography, geology and heterogeneity and coupled land-surface processes including the land-energy budget, biogeochemistry and snow (via CLM). It is multi-platform and runs with a common I/O structure from laptop to supercomputer. ParFlow is the result of a long, multi-institutional development history and is now a collaborative effort between CSM, LLNL, UniBonn and UCB. ParFlow has been coupled to the mesoscale, meteorological code ARPS and the NCAR code WRF.
+
+License:
+    Other
+    License Statement:
+        Parflow code is covered by the GNU Lesser General Public License.
+    URL:
+        https://opensource.org/license/LGPL-3.0
+
+Submitted Link to iGuide
+    https://platform.i-guide.io/code/65b8297c-7fc2-4c6b-8f5c-51c4c381d255
