@@ -20,7 +20,7 @@ def main():
     entry_index = 0
     output_csv_filename = "paper_doi_entries.csv"
     with open(output_csv_filename, "w+") as fout:
-        fout.write("paper_doi_url,image_url,title,author,year\n")
+        fout.write("paper_doi_url,image_url,title,author,year,tag\n")
         for line in content.split("\n"):
             if line.find("List of publications") >= 0:
                 found_publications_start = True
@@ -66,7 +66,7 @@ def scrap_entry(line: str, entry_index: int, fout):
             year = "2013"
     author = author.replace(" and ", "")
     author = author.replace(",,", "")
-    if entry_index < 500:
+    if entry_index <= 500:
         contents = read_url_content(doi_url)
         contents = read_url_redirect(contents)
         write_csv_row(author, year, title, doi_url, contents, entry_index, fout)
@@ -87,7 +87,8 @@ def write_csv_row(author, year, title, doi_url, contents, entry_index, fout):
 
     if contents:
         image_url = find_doi_image(contents)
-        fout.write(f'{doi_url},{image_url},"{title}","{author}",{year}\n')
+        tag = "parflow"
+        fout.write(f'{doi_url},{image_url},"{title}","{author}",{year},{tag}\n')
     else:
         print(f"*** Skipped DOI({entry_index}):", doi_url)
 
@@ -108,7 +109,12 @@ def find_doi_image(contents:str):
         if line.find("<img") >= 0 and not "logo" in line and not "license" in line:
             image_url = find_tag_attribute(line, "src")
             if found_abstract and image_url:
-                break
+                if "/images/profile" in image_url:
+                    # This is a user profile image and not a document image
+                    image_url = None
+                else:
+                    # This is a real profile image
+                    break
     if not image_url:
         image_url = "https://parflow.org/img/pf3d.png"
     elif not image_url.startswith("http"):
