@@ -20,3 +20,107 @@ License:
 
 Submitted Link to iGuide
     https://platform.i-guide.io/code/65b8297c-7fc2-4c6b-8f5c-51c4c381d255
+
+=====================================================
+
+Title:
+    Parflow - Short Course
+Authors:
+    Reed M. Maxwell, Laura E. Condon, Calla Chennault
+
+GIT URL:
+    https://github.com/hydroframe/parflow_python_shortcourse
+About:
+    This short course provides an introduction to ParFlow. All of the exercises provided here use the python interface for ParFlow. 
+
+License:
+    GPL-3
+    License Statement:
+    Parflow Short course is covered by GNU GENERAL PUBLIC LICENSE.
+
+IGuide Entry:
+    https://platform.i-guide.io/code/cbdfc0b6-3404-46fb-8a13-6149c189b0bc
+    
+
+=====================================================
+
+Title:
+    Parflow - Short Course 2024
+Authors:
+    Reed M. Maxwell, Laura E. Condon, Amy Defnet, Georgios Artavanis, Nick Engdahl, Stefan Kollet
+
+GIT URL:
+    https://github.com/hydroframe/parflow_short_course_updated
+About:
+    Instructions for getting setup with Docker for the ParFlow short course
+
+License:
+    GPL-3
+    License Statement:
+    Parflow Short course is covered by GNU GENERAL PUBLIC LICENSE.
+
+iGuide Entry:
+    https://platform.i-guide.io/code/9d483118-6c20-40e1-93ed-2070f1ecd4d3
+
+=====================================================
+
+Title:
+    Parflow - Advanced Short Course 2019
+Authors:
+    Reed M. Maxwell, Laura E. Condon,  Nick Engdahl
+
+GIT URL:
+    https://github.com/hydroframe/ParFlow_Advanced_ShortCourse
+About:
+    This repo contains all of the exercises and slides for the advanced parflow short course.
+    
+License:
+    GPL-3
+    License Statement:
+    Parflow Short course is covered by GNU GENERAL PUBLIC LICENSE.
+
+iGuide Entry:
+    https://platform.i-guide.io/code/9011d086-dba7-4e61-922f-0a5c53f5eaa4
+    
+=====================================================
+
+Title:
+    Parflow - Short Course 2019
+Authors:
+    Reed M. Maxwell, Laura E. Condon,  Nick Engdahl
+
+GIT URL:
+    https://github.com/hydroframe/ParFlow_Short_Course
+About:
+    This directory contains exercises for the ParFlow short course. Each one follows a specific module.
+    
+License:
+    GPL-3
+    License Statement:
+    Parflow Short course is covered by GNU GENERAL PUBLIC LICENSE.
+
+iGuide Entry:
+    https://platform.i-guide.io/code/fd2836a2-2e2a-4a41-8a2b-c2993fd9ef64
+
+=====================================================
+
+Title:
+    Subsettools
+Authors:
+    Reed M. Maxwell, Laura E. Condon, Amanda Triplett, Georgios Artavanis, Amy Defnet, Bill Hasling, Emily Wilborn, Andrew Bennett
+
+GIT URL:
+    https://github.com/hydroframe/subsettools
+About:
+    The SubsetTools package is developed and maintained to subset model inputs and outputs from the national ParFlow modeling framework. We provide tools to subset all required hydrogeologic and climate forcing datasets for a ParFlow simulation as well as obtaining pre-configured run scripts for your desired domain based on the most common use cases.
+
+    
+License:
+    MIT
+    License Statement:
+    Subsettools is covered by MIT LICENSE.
+
+iGuide Entry:
+    https://platform.i-guide.io/code/819ccf15-ecd1-40c4-a787-cb8dac02cd67
+    
+
